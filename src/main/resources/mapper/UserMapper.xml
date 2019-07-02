@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongruan.dao.IUserInfo" >
+    <resultMap type="UserInfo" id="paperResultMap" >
+
+        <id property="id" column="id"/>
+
+        <result property="username" column="usernname"/>
+
+        <result property="password" column="password"/>
+
+
+    </resultMap>
+
+    <select id = "findAll" resultType = "com.zhongruan.bean.UserInfo">
+        select * from userinfo
+    </select>
+
+    <insert id="insertUser" parameterType="com.zhongruan.bean.UserInfo">
+        insert into userinfo(username,password) values (#{username},#{password})
+    </insert>
+
+    <delete id="delUser" parameterType="int">
+        delete from userinfo where id = #{id}
+    </delete>
+
+    <update id="updateUser" parameterType="com.zhongruan.bean.UserInfo">
+        update userinfo set username = #{username},password = #{password}
+        where id = #{id}
+    </update>
+
+    <select id="findOne" parameterType="int" resultType="com.zhongruan.bean.UserInfo">
+        select * from userinfo where id = #{id}
+    </select>
+
+    <select id="log" parameterType="com.zhongruan.bean.UserInfo" resultType="com.zhongruan.bean.UserInfo">
+        select * from userinfo where username = #{username} and password = #{password}
+    </select>
+
+</mapper>
